@@ -67,11 +67,11 @@ apt install build-essential \
 <p>you can download and extract the redmine zip file.</p>
 <code>curl -s https://www.redmine.org/releases/redmine-$VER.tar.gz | \ sudo -u redmine tar xz -C /opt/redmine/ --strip-components=1</code>
 
-<h3>Coonfigure Redmine</h3>
+<h3>Configure Redmine</h3>
 <p>Once you have installed Redmine under the /opt/redmine directory, you can now proceed to configure it.</p>
 
 <h3>Create Redmine Configuration files</h3>
-<code>su - redmine</code>
+<code>su - redmine</code> <br>
 <code> cp /opt/redmine/config/configuration.yml.example /opt/redmine/config/configuration.yml</code> <br>
 <code> cp /opt/redmine/config/dispatch.fcgi.example /opt/redmine/config/dispatch.fcgi</code> <br>
 <code> cp /opt/redmine/config/database.yml.example /opt/redmine/config/database.yml</code> <br>
@@ -99,9 +99,9 @@ apt install build-essential \
 <code>sudo gem install bundler</code>
 
 <p>Next, install the required gems dependencies as redmine user.</p>
-<code>su - redmine</code>
-<code>bundle config set --local path 'vendor/bundle'</code>
-<code>bundle install</code>
+<code>su - redmine</code> <br>
+<code>bundle config set --local path 'vendor/bundle'</code> <br>
+<code>bundle install</code> <br>
 
 <p>Also update the gems;</p>
 <code>bundle update</code>
@@ -133,6 +133,6 @@ apt install build-essential \
 </ul>
 
 <p>If they do not exist, simply create them and ensure that they are owned by the user used to run Redmine.</p>
-<code>for i in tmp tmp/pdf public/plugin_assets; do [ -d $i ] || mkdir -p $i; done</code>
-<code>chown -R redmine:redmine files log tmp public/plugin_assets</code>
-<code>chmod -R 755 /opt/redmine</code>
+<code>for i in tmp tmp/pdf public/plugin_assets; do [ -d $i ] || mkdir -p $i; done</code> <br>
+<code>chown -R redmine:redmine files log tmp public/plugin_assets</code> <br>
+<code>chmod -R 755 /opt/redmine</code> <br>

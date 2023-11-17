@@ -40,7 +40,6 @@ apt install build-essential \
 <h3>Install Apache Web Server</h3>
 <code>apt install apache2 libapache2-mod-passenger</code>
 
-<p>Apache Service start</p>
 <code>systemctl start apache2 && sytsemctl enable apache2</code>
 
 <h3>Create Redmine System User</h3>
@@ -50,16 +49,16 @@ apt install build-essential \
 <code>usermod -aG redmine www-data</code>
 
 <h3>Install MariaDB</h3>
-<code>apt install mariadb-server</code>
-<code>systemctl start mariadb && systemctl enable mariadb</code>
-<code>mysql_secure_installation</code>
+<code>apt install mariadb-server</code><br>
+<code>systemctl start mariadb && systemctl enable mariadb</code><br>
+<code>mysql_secure_installation</code><br>
 
 <h3>Create Redmine Database and Database User</h3>
-<code>mysql -u root -p</code>
-<code>create database redminedb;</code>
-<code>grant all on redminedb.* to redmineuser@localhost identified by 'password';</code>
-<code>flush privileges;</code>
-<code>quit;</code>
+<code>mysql -u root -p</code><br>
+<code>create database redminedb;</code><br>
+<code>grant all on redminedb.* to redmineuser@localhost identified by 'password';</code><br>
+<code>flush privileges;</code><br>
+<code>quit;</code><br>
 
 <h3>Download and Install Redmine</h3>
 

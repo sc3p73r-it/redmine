@@ -14,7 +14,7 @@ OUR Project Site: https://pms.mdgportal.com/
 
 Install Required build tools and depenencies
 
-<blockquote><p>
+```
 apt install build-essential \
 	ruby-dev \
 	libxslt1-dev \
@@ -35,50 +35,104 @@ apt install build-essential \
 	libyaml-dev \
 	libsqlite3-dev \
 	sqlite3 -y
-</p></blockquote>
+```
 
 <h3>Install Apache Web Server</h3>
-<code>apt install apache2 libapache2-mod-passenger</code>
 
-<code>systemctl start apache2 && sytsemctl enable apache2</code>
+```
+apt install apache2 libapache2-mod-passenger
+```
+
+```
+systemctl start apache2 && sytsemctl enable apache2
+```
 
 <h3>Create Redmine System User</h3>
-<code>useradd -r -m -d /opt/redmine -s /usr/bin/bash redmine</code>
+
+```
+useradd -r -m -d /opt/redmine -s /usr/bin/bash redmine
+```
 
 <p>Apache web server user add to redmine group.</p>
-<code>usermod -aG redmine www-data</code>
+
+```
+usermod -aG redmine www-data
+```
 
 <h3>Install MariaDB</h3>
-<code>apt install mariadb-server</code><br>
-<code>systemctl start mariadb && systemctl enable mariadb</code><br>
-<code>mysql_secure_installation</code><br>
+
+```
+apt install mariadb-server
+```
+
+```
+systemctl start mariadb && systemctl enable mariadb
+```
+
+```
+mysql_secure_installation
+```
 
 <h3>Create Redmine Database and Database User</h3>
-<code>mysql -u root -p</code><br>
-<code>create database redminedb;</code><br>
-<code>grant all on redminedb.* to redmineuser@localhost identified by 'password';</code><br>
-<code>flush privileges;</code><br>
-<code>quit;</code><br>
+
+```
+mysql -u root -p
+```
+
+```
+create database redminedb;
+```
+
+```
+grant all on redminedb.* to redmineuser@localhost identified by 'password';
+```
+
+```
+flush privileges;
+```
+
+```
+quit;
+```
 
 <h3>Download and Install Redmine</h3>
 
 <a href="https://www.redmine.org/projects/redmine/wiki/Download">Redmine Download Page</a>
 
 <p>you can download and extract the redmine zip file.</p>
-<code>curl -s https://www.redmine.org/releases/redmine-$VER.tar.gz | \ sudo -u redmine tar xz -C /opt/redmine/ --strip-components=1</code>
+
+```
+curl -s https://www.redmine.org/releases/redmine-$VER.tar.gz | \ sudo -u redmine tar xz -C /opt/redmine/ --strip-components=1
+```
 
 <h3>Configure Redmine</h3>
 <p>Once you have installed Redmine under the /opt/redmine directory, you can now proceed to configure it.</p>
 
 <h3>Create Redmine Configuration files</h3>
-<code>su - redmine</code> <br>
-<code> cp /opt/redmine/config/configuration.yml.example /opt/redmine/config/configuration.yml</code> <br>
-<code> cp /opt/redmine/config/dispatch.fcgi.example /opt/redmine/config/dispatch.fcgi</code> <br>
-<code> cp /opt/redmine/config/database.yml.example /opt/redmine/config/database.yml</code> <br>
+
+```
+su - redmine
+```
+
+```
+ cp /opt/redmine/config/configuration.yml.example /opt/redmine/config/configuration.yml
+```
+
+```
+ cp /opt/redmine/config/dispatch.fcgi.example /opt/redmine/config/dispatch.fcgi
+```
+
+```
+ cp /opt/redmine/config/database.yml.example /opt/redmine/config/database.yml
+ ```
 
 
 <h3>Configure Database Setttings</h3>
-<code>vim /opt/redmine/config/database.yml</code>
+
+```
+vim /opt/redmine/config/database.yml
+```
+
 <quoteblock>
 <p>production:
   adapter: mysql2
@@ -93,32 +147,61 @@ apt install build-essential \
 <p>save and exit the file and logout redmine user</p>
 
 <h3>Install the Redmine Ruby Dependencies</h3>
-<code>cd /opt/redmine</code>
+
+```
+cd /opt/redmine
+```
 
 <p>Install Bundler for managing gem dependencies.</p>
-<code>sudo gem install bundler</code>
+
+```
+sudo gem install bundler
+```
 
 <p>Next, install the required gems dependencies as redmine user.</p>
-<code>su - redmine</code> <br>
-<code>bundle config set --local path 'vendor/bundle'</code> <br>
-<code>bundle install</code> <br>
+
+```
+su - redmine
+```
+
+```
+bundle config set --local path 'vendor/bundle'
+```
+
+```
+bundle install
+```
 
 <p>Also update the gems;</p>
-<code>bundle update</code>
+
+```
+bundle update
+```
 
 <p>Install updated io-wait and strscan gems;</p>
-<code>gem install io-wait strscan webrick --user-install</code>
+
+```
+gem install io-wait strscan webrick --user-install
+```
 
 <h3>Generate Secret Session Token</h3>
 <p>To prevent tempering of the cookies that stores session data, you need to generate a random secret key that Rails uses to encode them.</p>
-<code>bundle exec rake generate_secret_token</code>
 
+```
+bundle exec rake generate_secret_token
+```
 
 <h3>Create Database Schema Objects</h3>
 <p>Create Rails database structure by running the command below.Ensure you set the correct database credentials above.</p>
-<code>RAILS_ENV=production bundle exec rake db:migrate</code>
+
+```
+RAILS_ENV=production bundle exec rake db:migrate
+```
 <p>Once the database migration is done, insert default configuration data into the database by executing;</p>
-<code>RAILS_ENV=production REDMINE_LANG=en bundle exec rake redmine:load_default_data</code>
+
+```
+RAILS_ENV=production REDMINE_LANG=en bundle exec rake redmine:load_default_data
+```
 
 <p>You can safely ignore the Ruby warnings.</p>
 
@@ -133,8 +216,12 @@ apt install build-essential \
 </ul>
 
 <p>If they do not exist, simply create them and ensure that they are owned by the user used to run Redmine.</p>
-<code>for i in tmp tmp/pdf public/plugin_assets; do [ -d $i ] || mkdir -p $i; done</code> <br>
-<code>chown -R redmine:redmine files log tmp public/plugin_assets</code> <br>
+
+``` for i in tmp tmp/pdf public/plugin_assets; do [ -d $i ] || mkdir -p $i; done
+```
+
+```chown -R redmine:redmine files log tmp public/plugin_assets
+```
 
 ```
 chmod -R 755 /opt/redmine
@@ -182,7 +269,7 @@ bundle exec rails server -u webrick -e production
 
 # Redmine Apache Configuration
 
-Below is a sample Apache configuration for hosting Redmine on port 3000.
+Below is a sample Apache configuration for hosting Redmine on port 80.
 
 ```apache
 Listen 80

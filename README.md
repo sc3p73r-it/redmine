@@ -137,3 +137,55 @@ apt install build-essential \
 <code>chown -R redmine:redmine files log tmp public/plugin_assets</code> <br>
 <code>chmod -R 755 /opt/redmine</code> <br>
 
+<h3>Testing Redmine Installation</h3>
+<p>You can now test Redmine using WEBrick by executing the command below</p>
+<code>su - redmine</code>
+
+<p>Add webrick to Gemfile</p>
+<code>echo 'gem "webrick"' >> Gemfile</code>
+
+<p>Install webrick gem and test the installation</p>
+<code>bundle install</code><br>
+<code>bundle exec rails server -u webrick -e production</code>
+
+<p>Sample Output</p>
+<quoteblock>
+<p>
+=> Booting WEBrick
+=> Rails 6.1.7.6 application starting in production http://0.0.0.0:3000
+=> Run `bin/rails server --help` for more startup options
+[2023-11-12 18:54:22] INFO  WEBrick 1.8.1
+[2023-11-12 18:54:22] INFO  ruby 3.0.2 (2021-07-07) [x86_64-linux-gnu]
+[2023-11-12 18:54:22] INFO  WEBrick::HTTPServer#start: pid=8940 port
+</p>
+</quoteblock>
+
+<p>Navigate to the browser and enter the address, http://server-IP. Replace the server-IP accordingly.</p>
+
+<h3>Configure Apache For Redmine</h3>
+<p>next, create Redmine Apache VirtualHost configuration file.</p>
+<blockqoute>
+<p>
+cat > /etc/apache2/sites-available/redmine.conf << 'EOL'
+Listen 3000
+<VirtualHost *:3000>
+	ServerName redmine.kifarunix-demo.com
+	RailsEnv production
+	DocumentRoot /opt/redmine/public
+
+	<Directory "/opt/redmine/public">
+	        Allow from all
+	        Require all granted
+	</Directory>
+
+	ErrorLog ${APACHE_LOG_DIR}/redmine_error.log
+        CustomLog ${APACHE_LOG_DIR}/redmine_access.log combined
+</VirtualHost>
+EOL
+</p>
+</blockqoute>
+
+<p>Disable the default site configuration.</p>
+<code>a2dissite 000-default.conf</code><br>
+<p>Check Apache configuration for errors.</p>
+<code>apachectl configtest</code>

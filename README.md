@@ -217,10 +217,12 @@ RAILS_ENV=production REDMINE_LANG=en bundle exec rake redmine:load_default_data
 
 <p>If they do not exist, simply create them and ensure that they are owned by the user used to run Redmine.</p>
 
-``` for i in tmp tmp/pdf public/plugin_assets; do [ -d $i ] || mkdir -p $i; done
+``` 
+for i in tmp tmp/pdf public/plugin_assets; do [ -d $i ] || mkdir -p $i; done
 ```
 
-```chown -R redmine:redmine files log tmp public/plugin_assets
+```
+chown -R redmine:redmine files log tmp public/plugin_assets
 ```
 
 ```

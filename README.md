@@ -99,7 +99,7 @@ quit;
 
 <a href="https://www.redmine.org/projects/redmine/wiki/Download">Redmine Download Page</a>
 
-<p>you can download and extract the redmine zip file.</p>
+<p>you can download and extract the redmine zip file. If you use wget Example - $VER=5.0.1 redmine version change. </p>
 
 ```
 curl -s https://www.redmine.org/releases/redmine-$VER.tar.gz | \ sudo -u redmine tar xz -C /opt/redmine/ --strip-components=1

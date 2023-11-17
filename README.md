@@ -190,11 +190,13 @@ Listen 3000
 
 
 <p>Disable the default site configuration.</p>
+
 ```apache
 a2dissite 000-default.conf
 ```
 
 <p>Check Apache configuration for errors.</p>
+
 ```apache 
 apachectl configtest
 ```

@@ -135,21 +135,32 @@ apt install build-essential \
 <p>If they do not exist, simply create them and ensure that they are owned by the user used to run Redmine.</p>
 <code>for i in tmp tmp/pdf public/plugin_assets; do [ -d $i ] || mkdir -p $i; done</code> <br>
 <code>chown -R redmine:redmine files log tmp public/plugin_assets</code> <br>
-<code>chmod -R 755 /opt/redmine</code> <br>
+
+```
+chmod -R 755 /opt/redmine
+```
 
 <h3>Testing Redmine Installation</h3>
 <p>You can now test Redmine using WEBrick by executing the command below</p>
-<code>su - redmine</code>
+
+```apache 
+su - redmine
+```
 
 <p>Add webrick to Gemfile</p>
-<code>echo 'gem "webrick"' >> Gemfile</code>
+
+```apache
+echo 'gem "webrick"' >> Gemfile
+```
 
 <p>Install webrick gem and test the installation</p>
 
 ```apache
 bundle install 
 ```
-<code>bundle exec rails server -u webrick -e production</code>
+```apache 
+bundle exec rails server -u webrick -e production
+```
 
 <p>Sample Output</p>
 <blockquote>
@@ -174,9 +185,9 @@ bundle install
 Below is a sample Apache configuration for hosting Redmine on port 3000.
 
 ```apache
-Listen 3000
-<VirtualHost *:3000>
-    ServerName redmine.kifarunix-demo.com
+Listen 80
+<VirtualHost *:80>
+    ServerName your_domain.com
     RailsEnv production
     DocumentRoot /opt/redmine/public
 

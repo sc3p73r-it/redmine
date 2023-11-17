@@ -146,7 +146,7 @@ apt install build-essential \
 
 <p>Install webrick gem and test the installation</p>
 
-``` 
+```apache
 bundle install 
 ```
 <code>bundle exec rails server -u webrick -e production</code>

@@ -14,7 +14,7 @@ OUR Project Site: https://pms.mdgportal.com/
 
 Install Required build tools and depenencies
 
-<code>
+<blockquote><p>
 apt install build-essential \
 	ruby-dev \
 	libxslt1-dev \
@@ -35,7 +35,7 @@ apt install build-essential \
 	libyaml-dev \
 	libsqlite3-dev \
 	sqlite3 -y
-</code>
+</p></blockquote>
 
 <h3>Install Apache Web Server</h3>
 <code>apt install apache2 libapache2-mod-passenger</code>

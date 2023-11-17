@@ -149,16 +149,16 @@ apt install build-essential \
 <code>bundle exec rails server -u webrick -e production</code>
 
 <p>Sample Output</p>
-<quoteblock>
+<blockquote>
 <p>
 => Booting WEBrick
-=> Rails 6.1.7.6 application starting in production http://0.0.0.0:3000
+=> Rails 6.1.7.6 application starting in production http://0.0.0.0:80
 => Run `bin/rails server --help` for more startup options
 [2023-11-12 18:54:22] INFO  WEBrick 1.8.1
 [2023-11-12 18:54:22] INFO  ruby 3.0.2 (2021-07-07) [x86_64-linux-gnu]
 [2023-11-12 18:54:22] INFO  WEBrick::HTTPServer#start: pid=8940 port
 </p>
-</quoteblock>
+</blockquote>
 
 <p>Navigate to the browser and enter the address, http://server-IP. Replace the server-IP accordingly.</p>
 
@@ -167,9 +167,9 @@ apt install build-essential \
 <blockqoute>
 <p>
 cat > /etc/apache2/sites-available/redmine.conf << 'EOL'
-Listen 3000
-<VirtualHost *:3000>
-	ServerName redmine.kifarunix-demo.com
+Listen 80
+<VirtualHost *:80>
+	ServerName your_domain_name
 	RailsEnv production
 	DocumentRoot /opt/redmine/public
 

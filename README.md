@@ -166,24 +166,26 @@ apt install build-essential \
 <p>next, create Redmine Apache VirtualHost configuration file.</p>
 
 
-<blockquote>
-cat > /etc/apache2/sites-available/redmine.conf << 'EOL'
-Listen 80
-<VirtualHost *:80>
-	ServerName your_domain_name
-	RailsEnv production
-	DocumentRoot /opt/redmine/public
+# Redmine Apache Configuration
 
-	<Directory "/opt/redmine/public">
-	        Allow from all
-	        Require all granted
-	</Directory>
+Below is a sample Apache configuration for hosting Redmine on port 3000.
 
-	ErrorLog ${APACHE_LOG_DIR}/redmine_error.log
-        CustomLog ${APACHE_LOG_DIR}/redmine_access.log combined
+```apache
+Listen 3000
+<VirtualHost *:3000>
+    ServerName redmine.kifarunix-demo.com
+    RailsEnv production
+    DocumentRoot /opt/redmine/public
+
+    <Directory "/opt/redmine/public">
+        Allow from all
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/redmine_error.log
+    CustomLog ${APACHE_LOG_DIR}/redmine_access.log combined
 </VirtualHost>
-EOL
-</blockquote>
+
 
 
 

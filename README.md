@@ -10,7 +10,7 @@ OUR Project Site: https://pms.mdgportal.com/
 
 
 
-<h1>Redmine Installation Step By Step</h1>
+<h1>Redmine Installation Step By Step Ubuntu 22.04</h1>
 
 Install Required build tools and depenencies
 
@@ -38,3 +38,14 @@ apt install build-essential \
 	sqlite3 -y
 </p>
 </blockquote>
+
+<h3>Install Apache Web Server</h3>
+<blockquote><p>apt install apache2 libapache2-mod-passenger</p></blockqoute><br>
+<p>Apache Service start</p>
+<blockquote><p>systemctl start apache2 && sytsemctl enable apache2</p></blockqoute>
+
+<h3>Create Redmine System User</h3>
+<blockquote><p>useradd -r -m -d /opt/redmine -s /usr/bin/bash redmine</p></blockqoute>
+
+<p>Apache web server user add to redmine group.</p>
+<code>usermod -aG redmine www-data</code>

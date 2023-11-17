@@ -126,13 +126,14 @@ apt install build-essential \
 <p>Ensure that the following directories are available on Redmine directory, /opt/redmine.<p>
 
 <ul>
-<ol>tmp and tmp/pdf</ol>
-<ol>public and public/plugin_assets</ol>
-<ol>log</ol>
-<ol>files</ol>
+<li>tmp and tmp/pdf</li>
+<li>public and public/plugin_assets</li>
+<li>log</li>
+<li>files</li>
 </ul>
 
 <p>If they do not exist, simply create them and ensure that they are owned by the user used to run Redmine.</p>
 <code>for i in tmp tmp/pdf public/plugin_assets; do [ -d $i ] || mkdir -p $i; done</code> <br>
 <code>chown -R redmine:redmine files log tmp public/plugin_assets</code> <br>
 <code>chmod -R 755 /opt/redmine</code> <br>
+

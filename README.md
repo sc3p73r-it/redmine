@@ -188,6 +188,7 @@ EOL
 
 <p>Disable the default site configuration.</p>
 <code>a2dissite 000-default.conf</code> <br>
+
 <p>Check Apache configuration for errors.</p>
 <code>apachectl configtest</code>
 

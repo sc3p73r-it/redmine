@@ -99,7 +99,7 @@ quit;
 
 <a href="https://www.redmine.org/projects/redmine/wiki/Download">Redmine Download Page</a>
 
-<p>you can download and extract the redmine zip file. If you use wget Example - $VER=5.0.1 redmine version change. </p>
+<p>you can download and extract the redmine zip file. If you use wget Example - $VER=5.0.6 redmine version change. </p>
 
 ```
 curl -s https://www.redmine.org/releases/redmine-$VER.tar.gz | \ sudo -u redmine tar xz -C /opt/redmine/ --strip-components=1
@@ -303,4 +303,29 @@ a2dissite 000-default.conf
 ```
 apachectl configtest
 ```
+<p>Ensure that Passenger module is loaded.</p>
 
+```
+apache2ctl -M | grep -i passenger
+```
+
+```
+passenger_module (shared)
+```
+<p>If not enabled, run the command below to enable it.</p>
+
+```
+a2enmod passenger
+```
+
+<p>Enable Redmine site.</p>
+
+```
+sudo a2ensite redmine
+```
+
+<p>Reload Apache</p>
+
+```
+ systemctl restart apache2
+```

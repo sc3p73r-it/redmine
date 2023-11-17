@@ -164,7 +164,9 @@ apt install build-essential \
 
 <h3>Configure Apache For Redmine</h3>
 <p>next, create Redmine Apache VirtualHost configuration file.</p>
-<blockqoute>
+
+
+<code>
 
 cat > /etc/apache2/sites-available/redmine.conf << 'EOL'
 Listen 80
@@ -183,7 +185,7 @@ Listen 80
 </VirtualHost>
 EOL
 
-</blockqoute>
+</code>
 
 <p>Disable the default site configuration.</p>
 <code>a2dissite 000-default.conf</code> <br>

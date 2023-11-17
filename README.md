@@ -182,10 +182,12 @@ Listen 80
         CustomLog ${APACHE_LOG_DIR}/redmine_access.log combined
 </VirtualHost>
 EOL
+
 </p>
 </blockqoute>
 
 <p>Disable the default site configuration.</p>
-<code>a2dissite 000-default.conf</code><br>
+<code>a2dissite 000-default.conf</code> <br>
 <p>Check Apache configuration for errors.</p>
 <code>apachectl configtest</code>
+

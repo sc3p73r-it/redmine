@@ -6,7 +6,7 @@ More details can be found in the doc directory or on the official website http:/
 ![image](https://github.com/sc3p73r-it/redmine/assets/140035139/b1fd481b-785a-479e-935c-89dc927d9cca)
 
 
-OUR Project Site: https://pms.mdgportal.com/
+OUR Project Management Portal: https://pms.mdgportal.com/
 
 
 

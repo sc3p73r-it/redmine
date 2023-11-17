@@ -143,22 +143,22 @@ chmod -R 755 /opt/redmine
 <h3>Testing Redmine Installation</h3>
 <p>You can now test Redmine using WEBrick by executing the command below</p>
 
-```apache 
+``` 
 su - redmine
 ```
 
 <p>Add webrick to Gemfile</p>
 
-```apache
+```
 echo 'gem "webrick"' >> Gemfile
 ```
 
 <p>Install webrick gem and test the installation</p>
 
-```apache
+```
 bundle install 
 ```
-```apache 
+``` 
 bundle exec rails server -u webrick -e production
 ```
 
@@ -205,13 +205,13 @@ Listen 80
 
 <p>Disable the default site configuration.</p>
 
-```apache
+```
 a2dissite 000-default.conf
 ```
 
 <p>Check Apache configuration for errors.</p>
 
-```apache 
+```
 apachectl configtest
 ```
 
